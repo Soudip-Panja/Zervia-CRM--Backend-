@@ -1,0 +1,114 @@
+[
+  {
+    "name": "John Doe",
+    "source": "Website",
+    "salesAgent": "64e3f8a9c1d4b8f29f9e1234",
+    "status": "New",
+    "tags": ["High Value", "Follow-up"],
+    "timeToClose": 15,
+    "priority": "High",
+    "createdAt": "2025-08-01T10:15:00Z",
+    "updatedAt": "2025-08-01T10:15:00Z"
+  },
+  {
+    "name": "Jane Smith",
+    "source": "Referral",
+    "salesAgent": "64e3f8a9c1d4b8f29f9e5678",
+    "status": "Contacted",
+    "tags": ["Urgent"],
+    "timeToClose": 7,
+    "priority": "Medium",
+    "createdAt": "2025-08-02T11:30:00Z",
+    "updatedAt": "2025-08-02T11:30:00Z"
+  },
+  {
+    "name": "Michael Johnson",
+    "source": "Cold Call",
+    "salesAgent": "64e3f8a9c1d4b8f29f9e9101",
+    "status": "Qualified",
+    "tags": ["Follow-up"],
+    "timeToClose": 20,
+    "priority": "Low",
+    "createdAt": "2025-08-03T12:45:00Z",
+    "updatedAt": "2025-08-03T12:45:00Z"
+  },
+  {
+    "name": "Emily Davis",
+    "source": "Advertisement",
+    "salesAgent": "64e3f8a9c1d4b8f29f9e1122",
+    "status": "Proposal Sent",
+    "tags": ["High Value", "Negotiation"],
+    "timeToClose": 10,
+    "priority": "High",
+    "createdAt": "2025-08-04T14:00:00Z",
+    "updatedAt": "2025-08-04T14:00:00Z"
+  },
+  {
+    "name": "William Brown",
+    "source": "Email",
+    "salesAgent": "64e3f8a9c1d4b8f29f9e3344",
+    "status": "Closed",
+    "tags": ["Repeat Customer"],
+    "timeToClose": 5,
+    "priority": "Medium",
+    "createdAt": "2025-08-05T15:15:00Z",
+    "updatedAt": "2025-08-10T16:00:00Z",
+    "closedAt": "2025-08-10T16:00:00Z"
+  },
+  {
+    "name": "Sophia Wilson",
+    "source": "Other",
+    "salesAgent": "64e3f8a9c1d4b8f29f9e5566",
+    "status": "New",
+    "tags": [],
+    "timeToClose": 30,
+    "priority": "Low",
+    "createdAt": "2025-08-06T09:00:00Z",
+    "updatedAt": "2025-08-06T09:00:00Z"
+  },
+  {
+    "name": "James Taylor",
+    "source": "Website",
+    "salesAgent": "64e3f8a9c1d4b8f29f9e7788",
+    "status": "Contacted",
+    "tags": ["High Value"],
+    "timeToClose": 12,
+    "priority": "High",
+    "createdAt": "2025-08-07T13:20:00Z",
+    "updatedAt": "2025-08-07T13:20:00Z"
+  },
+  {
+    "name": "Olivia Martinez",
+    "source": "Referral",
+    "salesAgent": "64e3f8a9c1d4b8f29f9e9900",
+    "status": "Qualified",
+    "tags": ["Negotiation", "Follow-up"],
+    "timeToClose": 18,
+    "priority": "Medium",
+    "createdAt": "2025-08-08T17:45:00Z",
+    "updatedAt": "2025-08-08T17:45:00Z"
+  },
+  {
+    "name": "Daniel Anderson",
+    "source": "Cold Call",
+    "salesAgent": "64e3f8a9c1d4b8f29f9e4455",
+    "status": "Proposal Sent",
+    "tags": ["Urgent"],
+    "timeToClose": 8,
+    "priority": "High",
+    "createdAt": "2025-08-09T19:10:00Z",
+    "updatedAt": "2025-08-09T19:10:00Z"
+  },
+  {
+    "name": "Ava Thomas",
+    "source": "Advertisement",
+    "salesAgent": "64e3f8a9c1d4b8f29f9e6677",
+    "status": "Closed",
+    "tags": ["High Value", "Repeat Customer"],
+    "timeToClose": 6,
+    "priority": "High",
+    "createdAt": "2025-08-10T20:30:00Z",
+    "updatedAt": "2025-08-15T21:00:00Z",
+    "closedAt": "2025-08-15T21:00:00Z"
+  }
+]
