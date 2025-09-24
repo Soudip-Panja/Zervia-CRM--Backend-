@@ -19,6 +19,7 @@ async function createNewLead(newLead) {
     return populatedLead;
   } catch (error) {
     console.log("Error creating new lead.", error);
+    throw error
   }
 }
 
@@ -97,5 +98,81 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: "Failed to add Lead." });
   }
 });
+
+// Get Lead
+async function readAllLeads(filter = {}) {
+  try {
+    const leads = await Lead.find(filter).populate("salesAgent", "name");
+    return leads;
+  } catch (error) {
+    console.log("Error fetching leads", error);
+    throw error;
+  }
+}
+
+router.get("/", async (req, res) => {
+  try {
+    const { salesAgent, status, tags, source } = req.query;
+
+    const validStatuses = [
+      "New",
+      "Contacted",
+      "Qualified",
+      "Proposal Sent",
+      "Closed",
+    ];
+    const validSources = [
+      "Website",
+      "Referral",
+      "Cold Call",
+      "Advertisement",
+      "Email",
+      "Other",
+    ];
+
+    let filter = {};
+
+  
+    if (salesAgent) {
+      const mongoose = require("mongoose");
+      if (!mongoose.Types.ObjectId.isValid(salesAgent)) {
+        return res
+          .status(400)
+          .json({ error: "Invalid input: 'salesAgent' must be a valid ObjectId." });
+      }
+      filter.salesAgent = salesAgent;
+    }
+
+    if (status) {
+      if (!validStatuses.includes(status)) {
+        return res.status(400).json({
+          error: "Invalid input: 'status' must be one of " + validStatuses.join(", "),
+        });
+      }
+      filter.status = status;
+    }
+
+    if (tags) {
+      const tagsArray = tags.split(",").map((t) => t.trim());
+      filter.tags = { $all: tagsArray };
+    }
+
+    if (source) {
+      if (!validSources.includes(source)) {
+        return res.status(400).json({
+          error: "Invalid input: 'source' must be one of " + validSources.join(", "),
+        });
+      }
+      filter.source = source;
+    }
+
+    const leads = await readAllLeads(filter);
+    res.status(200).json(leads);
+  } catch (error) {
+    console.error("Error fetching leads:", error);
+    res.status(500).json({ error: "Failed to fetch leads." });
+  }
+});
+
 
 module.exports = { router, createNewLead };
