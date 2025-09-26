@@ -174,5 +174,30 @@ router.get("/", async (req, res) => {
   }
 });
 
+//Update Lead
+async function updateLead(leadId, dataToUpdate) {
+  try {
+    const updatedLead = await Lead.findByIdAndUpdate(leadId, dataToUpdate, {new: true}).populate("salesAgent", "_id name") 
+    return updatedLead
+  }
+  catch (error) {
+    console.log("Failed to update lead", error)
+  }
+}
+
+router.post("/:leadId", async (req, res) => {
+  try{
+    const updatedLead = await updateLead(req.params.leadId, req.body)
+    if(updateLead) {
+      res.status(200).json({message: "Lead updated successfully.", Lead: updatedLead})
+    } else {
+      res.status(404).json({error: "Lead not found."})
+    }
+  }
+  catch (error) {
+    res.status(500).json({error: "Failed to update lead"})
+  }
+})
+
 
 module.exports = { router, createNewLead };
