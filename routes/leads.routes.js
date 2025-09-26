@@ -191,11 +191,36 @@ router.post("/:leadId", async (req, res) => {
     if(updateLead) {
       res.status(200).json({message: "Lead updated successfully.", Lead: updatedLead})
     } else {
-      res.status(404).json({error: "Lead not found."})
+      res.status(404).json({error: `Lead with ID ${req.params.leadId} not found.`})
     }
   }
   catch (error) {
     res.status(500).json({error: "Failed to update lead"})
+  }
+})
+
+//Delete Lead
+async function deleteLead(leadId) {
+  try {
+    const deletedLead = await Lead.findByIdAndDelete(leadId)
+    return deletedLead
+  }
+  catch (error) {
+    console.log("Failed to delete Lead.")
+  }
+}
+
+router.delete("/:leadId", async (req, res) => {
+  try{
+    const deletedLead = await deleteLead(req.params.leadId)
+    if(deletedLead) {
+      res.status(200).json({message: "Lead deleted successfully", DeletedLead: deletedLead})
+    } else {
+      res.status(404).json({error: `Lead with ID ${req.params.leadId} not found.`})
+    }
+  }
+  catch (error) {
+    res.status(500).json({error: "Failed to delete Lead."})
   }
 })
 
