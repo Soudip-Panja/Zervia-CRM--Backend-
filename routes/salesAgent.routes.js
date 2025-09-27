@@ -61,13 +61,24 @@ router.post("/", async (req, res) => {
 //Get All Sales Agent
 async function getAllSalesAgent() {
   try {
-    const allSalesAgent = await SalesAgent.find()
-    console.log(allSalesAgent)
-  } 
-  catch (error) {
-    console.log("Failed to fetch all Sales Agent", error)
+    const allSalesAgent = await SalesAgent.find();
+    return allSalesAgent;
+  } catch (error) {
+    console.log("Failed to fetch all Sales Agent", error);
   }
 }
-getAllSalesAgent()
+
+router.get("/", async (req, res) => {
+  try {
+    const salesAgents = await getAllSalesAgent();
+    if (salesAgents.length != 0) {
+      res.json(salesAgents);
+    } else {
+      res.status(404).json({ error: "No Sales Agents found." });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to fetch all Sales Agent." });
+  }
+});
 
 module.exports = { router, createNewSalesAgent };
