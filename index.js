@@ -6,9 +6,18 @@ const app = express();
 app.use(express.json());
 
 const { router: leadsRouter } = require("./routes/leads.routes");
+const { router: salesAgentRouter } = require("./routes/salesAgent.routes");
 
 app.use("/leads", leadsRouter);
+app.use("/sales-agents", salesAgentRouter);
 
+// const newSalesAgent = {
+//   name: "Rahul Doe",
+//   email: "rahul@example.com",
+// };
+
+// const {createNewSalesAgent} = require("./routes/salesAgent.routes")
+// createNewSalesAgent(newSalesAgent)
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
