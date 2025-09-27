@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const SalesAgent = require("../models/salesAgent.model");
+const { get } = require("mongoose");
 
 //Create New Sales Agent
 
@@ -56,5 +57,17 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: "Failed to add Sales Agent." });
   }
 });
+
+//Get All Sales Agent
+async function getAllSalesAgent() {
+  try {
+    const allSalesAgent = await SalesAgent.find()
+    console.log(allSalesAgent)
+  } 
+  catch (error) {
+    console.log("Failed to fetch all Sales Agent", error)
+  }
+}
+getAllSalesAgent()
 
 module.exports = { router, createNewSalesAgent };
