@@ -7,6 +7,9 @@ const { seedLeadData } = require("./dataSeeding/leadsSeeding")
 const { seedSalesAgent } = require("./dataSeeding/salesAgentSeeding")
 // seedSalesAgent()
 
+const { seedComments } = require("./dataSeeding/commentsSeeding")
+seedComments()
+
 const express = require("express");
 const app = express();
 app.use(express.json());
