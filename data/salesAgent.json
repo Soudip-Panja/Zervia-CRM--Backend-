@@ -1,62 +1,27 @@
 [
   {
-    "_id": "64e3f8a9c1d4b8f29f9e1234",
     "name": "Alice Johnson",
     "email": "alice.johnson@example.com",
     "createdAt": "2025-07-25T09:00:00Z"
   },
   {
-    "_id": "64e3f8a9c1d4b8f29f9e5678",
     "name": "Robert Miller",
     "email": "robert.miller@example.com",
     "createdAt": "2025-07-26T10:30:00Z"
   },
   {
-    "_id": "64e3f8a9c1d4b8f29f9e9101",
     "name": "Sophia Lee",
     "email": "sophia.lee@example.com",
     "createdAt": "2025-07-27T11:45:00Z"
   },
   {
-    "_id": "64e3f8a9c1d4b8f29f9e1122",
     "name": "David Clark",
     "email": "david.clark@example.com",
     "createdAt": "2025-07-28T14:15:00Z"
   },
   {
-    "_id": "64e3f8a9c1d4b8f29f9e3344",
     "name": "Emma White",
     "email": "emma.white@example.com",
     "createdAt": "2025-07-29T15:30:00Z"
-  },
-  {
-    "_id": "64e3f8a9c1d4b8f29f9e5566",
-    "name": "Liam Harris",
-    "email": "liam.harris@example.com",
-    "createdAt": "2025-07-30T16:45:00Z"
-  },
-  {
-    "_id": "64e3f8a9c1d4b8f29f9e7788",
-    "name": "Olivia Walker",
-    "email": "olivia.walker@example.com",
-    "createdAt": "2025-07-31T12:00:00Z"
-  },
-  {
-    "_id": "64e3f8a9c1d4b8f29f9e9900",
-    "name": "James Hall",
-    "email": "james.hall@example.com",
-    "createdAt": "2025-08-01T09:20:00Z"
-  },
-  {
-    "_id": "64e3f8a9c1d4b8f29f9e4455",
-    "name": "Mia Allen",
-    "email": "mia.allen@example.com",
-    "createdAt": "2025-08-02T13:15:00Z"
-  },
-  {
-    "_id": "64e3f8a9c1d4b8f29f9e6677",
-    "name": "Noah Young",
-    "email": "noah.young@example.com",
-    "createdAt": "2025-08-03T18:10:00Z"
   }
 ]

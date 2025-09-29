@@ -1,6 +1,12 @@
 const { initializeDatabase } = require("./db/db.connect");
 initializeDatabase();
 
+const { seedLeadData } = require("./dataSeeding/leadsSeeding")
+// seedLeadData()
+
+const { seedSalesAgent } = require("./dataSeeding/salesAgentSeeding")
+// seedSalesAgent()
+
 const express = require("express");
 const app = express();
 app.use(express.json());
