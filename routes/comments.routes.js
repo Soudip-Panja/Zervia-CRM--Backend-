@@ -72,4 +72,23 @@ router.post("/:id/comments", async (req, res) => {
   }
 });
 
-module.exports = { router };
+//Get all comments by perticular lead.
+async function getAllCommentsById(leadId) {
+  try {
+    if (!mongoose.Types.ObjectId.isValid(leadId)) {
+      return { error: "Invalid Lead ID format." };
+    }
+
+    const leadExists = await Lead.findById(leadId);
+    if (!leadExists) {
+      return { error: `Lead with ID '${leadId}' not found.` };
+    }
+
+    const comments = await Comments.find({lead: leadId});
+    console.log(comments);
+  } catch (error) {
+    console.log("Failed to fetch comments", error);
+  }
+}
+
+module.exports = { router, getAllCommentsById };
