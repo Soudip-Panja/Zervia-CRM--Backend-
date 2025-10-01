@@ -10,9 +10,6 @@ const { seedSalesAgent } = require("./dataSeeding/salesAgentSeeding");
 const { seedComments } = require("./dataSeeding/commentsSeeding");
 // seedComments()
 
-const { getAllCommentsById } = require("./routes/comments.routes");
-getAllCommentsById("68da77a07785ca2a3cd67461")
-
 const express = require("express");
 const app = express();
 app.use(express.json());

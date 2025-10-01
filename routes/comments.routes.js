@@ -72,7 +72,7 @@ router.post("/:id/comments", async (req, res) => {
   }
 });
 
-//Get all comments by perticular lead.
+// ✅ Get all comments by perticular lead.
 async function getAllCommentsById(leadId) {
   try {
     if (!mongoose.Types.ObjectId.isValid(leadId)) {
@@ -84,11 +84,36 @@ async function getAllCommentsById(leadId) {
       return { error: `Lead with ID '${leadId}' not found.` };
     }
 
-    const comments = await Comments.find({lead: leadId});
-    console.log(comments);
+    const comments = await Comments.find({ lead: leadId }).populate(
+      "author",
+      "name"
+    );
+
+    const formattedComments = comments.map((comment) => ({
+      id: comment._id.toString(),
+      commentText: comment.commentText,
+      author: comment.author.name,
+      createdAt: comment.createdAt,
+    }));
+
+    return formattedComments;
   } catch (error) {
     console.log("Failed to fetch comments", error);
   }
 }
 
-module.exports = { router, getAllCommentsById };
+router.get("/:leadId/comments", async (req, res) => {
+  try {
+    const { leadId } = req.params;
+    const allComments = await getAllCommentsById(leadId);
+    if (allComments) {
+      res.status(200).json(allComments);
+    } else {
+      res.status(404).json({ error: "No comments found for this lead." });
+    }
+  } catch (error) {
+    res.status(500).json("Failed to fetch comments.");
+  }
+});
+
+module.exports = { router };
