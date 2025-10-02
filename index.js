@@ -10,6 +10,9 @@ const { seedSalesAgent } = require("./dataSeeding/salesAgentSeeding");
 const { seedComments } = require("./dataSeeding/commentsSeeding");
 // seedComments()
 
+const { getLastWeekClosedLeads } = require("./routes/reports.routes");
+getLastWeekClosedLeads();
+
 const express = require("express");
 const app = express();
 app.use(express.json());
