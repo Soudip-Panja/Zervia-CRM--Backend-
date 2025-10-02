@@ -4,6 +4,7 @@ const router = express.Router();
 const Lead = require("../models/lead.model");
 const SalesAgent = require("../models/salesAgent.model");
 
+//Create a New Lead
 async function createNewLead(newLead) {
   try {
     if (newLead.salesAgent) {
@@ -99,7 +100,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-// Get Lead
+// Get all Lead with Query Parameters
 async function readAllLeads(filter = {}) {
   try {
     const leads = await Lead.find(filter).populate("salesAgent", "name");
