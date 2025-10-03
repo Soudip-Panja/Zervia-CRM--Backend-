@@ -20,7 +20,7 @@ async function createNewLead(newLead) {
     return populatedLead;
   } catch (error) {
     console.log("Error creating new lead.", error);
-    throw error
+    throw error;
   }
 }
 
@@ -133,13 +133,14 @@ router.get("/", async (req, res) => {
 
     let filter = {};
 
-  
     if (salesAgent) {
       const mongoose = require("mongoose");
       if (!mongoose.Types.ObjectId.isValid(salesAgent)) {
         return res
           .status(400)
-          .json({ error: "Invalid input: 'salesAgent' must be a valid ObjectId." });
+          .json({
+            error: "Invalid input: 'salesAgent' must be a valid ObjectId.",
+          });
       }
       filter.salesAgent = salesAgent;
     }
@@ -147,7 +148,9 @@ router.get("/", async (req, res) => {
     if (status) {
       if (!validStatuses.includes(status)) {
         return res.status(400).json({
-          error: "Invalid input: 'status' must be one of " + validStatuses.join(", "),
+          error:
+            "Invalid input: 'status' must be one of " +
+            validStatuses.join(", "),
         });
       }
       filter.status = status;
@@ -161,7 +164,8 @@ router.get("/", async (req, res) => {
     if (source) {
       if (!validSources.includes(source)) {
         return res.status(400).json({
-          error: "Invalid input: 'source' must be one of " + validSources.join(", "),
+          error:
+            "Invalid input: 'source' must be one of " + validSources.join(", "),
         });
       }
       filter.source = source;
@@ -178,52 +182,60 @@ router.get("/", async (req, res) => {
 //Update Lead
 async function updateLead(leadId, dataToUpdate) {
   try {
-    const updatedLead = await Lead.findByIdAndUpdate(leadId, dataToUpdate, {new: true}).populate("salesAgent", "_id name") 
-    return updatedLead
-  }
-  catch (error) {
-    console.log("Failed to update lead", error)
+    const updatedLead = await Lead.findByIdAndUpdate(leadId, dataToUpdate, {
+      new: true,
+    }).populate("salesAgent", "_id name");
+    return updatedLead;
+  } catch (error) {
+    console.log("Failed to update lead", error);
   }
 }
 
 router.post("/:leadId", async (req, res) => {
-  try{
-    const updatedLead = await updateLead(req.params.leadId, req.body)
-    if(updateLead) {
-      res.status(200).json({message: "Lead updated successfully.", Lead: updatedLead})
+  try {
+    const updatedLead = await updateLead(req.params.leadId, req.body);
+    if (updateLead) {
+      res
+        .status(200)
+        .json({ message: "Lead updated successfully.", Lead: updatedLead });
     } else {
-      res.status(404).json({error: `Lead with ID ${req.params.leadId} not found.`})
+      res
+        .status(404)
+        .json({ error: `Lead with ID ${req.params.leadId} not found.` });
     }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update lead" });
   }
-  catch (error) {
-    res.status(500).json({error: "Failed to update lead"})
-  }
-})
+});
 
 //Delete Lead
 async function deleteLead(leadId) {
   try {
-    const deletedLead = await Lead.findByIdAndDelete(leadId)
-    return deletedLead
-  }
-  catch (error) {
-    console.log("Failed to delete Lead.")
+    const deletedLead = await Lead.findByIdAndDelete(leadId);
+    return deletedLead;
+  } catch (error) {
+    console.log("Failed to delete Lead.");
   }
 }
 
 router.delete("/:leadId", async (req, res) => {
-  try{
-    const deletedLead = await deleteLead(req.params.leadId)
-    if(deletedLead) {
-      res.status(200).json({message: "Lead deleted successfully", DeletedLead: deletedLead})
+  try {
+    const deletedLead = await deleteLead(req.params.leadId);
+    if (deletedLead) {
+      res
+        .status(200)
+        .json({
+          message: "Lead deleted successfully",
+          DeletedLead: deletedLead,
+        });
     } else {
-      res.status(404).json({error: `Lead with ID ${req.params.leadId} not found.`})
+      res
+        .status(404)
+        .json({ error: `Lead with ID ${req.params.leadId} not found.` });
     }
+  } catch (error) {
+    res.status(500).json({ error: "Failed to delete Lead." });
   }
-  catch (error) {
-    res.status(500).json({error: "Failed to delete Lead."})
-  }
-})
+});
 
-
-module.exports = { router, createNewLead };
+module.exports = { router };
