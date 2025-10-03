@@ -1,13 +1,13 @@
 const { initializeDatabase } = require("./db/db.connect");
 initializeDatabase();
 
-const { seedLeadData } = require("./dataSeeding/leadsSeeding");
+// const { seedLeadData } = require("./dataSeeding/leadsSeeding");
 // seedLeadData()
 
-const { seedSalesAgent } = require("./dataSeeding/salesAgentSeeding");
+// const { seedSalesAgent } = require("./dataSeeding/salesAgentSeeding");
 // seedSalesAgent()
 
-const { seedComments } = require("./dataSeeding/commentsSeeding");
+// const { seedComments } = require("./dataSeeding/commentsSeeding");
 // seedComments()
 
 const express = require("express");
