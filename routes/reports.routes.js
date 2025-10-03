@@ -44,4 +44,20 @@ router.get("/last-week", async(req, res) => {
     }
 })
 
-module.exports = { router };
+//Get Total Leads in Pipeline
+async function getLeadsInPipeline() {
+  try{
+    const totalLeads = await Lead.find({status: { $ne: "Closed" }})
+    if(totalLeads.length > 0){
+      console.log(`Total Leads = ${totalLeads.length}`)
+    } else {
+      console.log("No leads found.")
+    }
+  }
+  catch (error) {
+    console.log("Failed to fech total leads", error)
+  }
+}
+
+
+module.exports = { router, getLeadsInPipeline };

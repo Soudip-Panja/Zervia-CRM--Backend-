@@ -10,6 +10,9 @@ const { seedSalesAgent } = require("./dataSeeding/salesAgentSeeding");
 const { seedComments } = require("./dataSeeding/commentsSeeding");
 // seedComments()
 
+const {getLeadsInPipeline} = require("./routes/reports.routes");
+getLeadsInPipeline()
+
 const express = require("express");
 const app = express();
 app.use(express.json());
