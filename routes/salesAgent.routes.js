@@ -10,7 +10,7 @@ async function createNewSalesAgent(newSalesAgent) {
   try {
     const salesAgent = new SalesAgent(newSalesAgent);
     const saveSalesAgent = await salesAgent.save();
-    console.log(saveSalesAgent);
+    return saveSalesAgent
   } catch (error) {
     console.log("Error creating new Sales Agent", error);
   }
