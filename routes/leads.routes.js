@@ -136,11 +136,9 @@ router.get("/", async (req, res) => {
     if (salesAgent) {
       const mongoose = require("mongoose");
       if (!mongoose.Types.ObjectId.isValid(salesAgent)) {
-        return res
-          .status(400)
-          .json({
-            error: "Invalid input: 'salesAgent' must be a valid ObjectId.",
-          });
+        return res.status(400).json({
+          error: "Invalid input: 'salesAgent' must be a valid ObjectId.",
+        });
       }
       filter.salesAgent = salesAgent;
     }
@@ -179,6 +177,32 @@ router.get("/", async (req, res) => {
   }
 });
 
+// Get Single Lead by ID
+async function readLeadById(leadId) {
+  try {
+    const lead = await Lead.findById(leadId).populate("salesAgent", "name");
+    return lead;
+  } catch (error) {
+    console.log("Error fetching lead by ID", error);
+    throw error;
+  }
+}
+
+router.get("/:leadId", async (req, res) => {
+  try {
+    const lead = await readLeadById(req.params.leadId);
+    if (lead) {
+      res.status(200).json(lead);
+    } else {
+      res
+        .status(404)
+        .json({ error: `Lead with ID ${req.params.leadId} not found.` });
+    }
+  } catch (error) {
+    console.error("Error fetching lead:", error);
+    res.status(500).json({ error: "Failed to fetch lead." });
+  }
+});
 
 //Update Lead
 async function updateLead(leadId, dataToUpdate) {
@@ -223,12 +247,10 @@ router.delete("/:leadId", async (req, res) => {
   try {
     const deletedLead = await deleteLead(req.params.leadId);
     if (deletedLead) {
-      res
-        .status(200)
-        .json({
-          message: "Lead deleted successfully",
-          DeletedLead: deletedLead,
-        });
+      res.status(200).json({
+        message: "Lead deleted successfully",
+        DeletedLead: deletedLead,
+      });
     } else {
       res
         .status(404)
