@@ -219,19 +219,23 @@ async function updateLead(leadId, dataToUpdate) {
 router.post("/:leadId", async (req, res) => {
   try {
     const updatedLead = await updateLead(req.params.leadId, req.body);
-    if (updateLead) {
-      res
-        .status(200)
-        .json({ message: "Lead updated successfully.", Lead: updatedLead });
+
+    if (updatedLead) {
+      return res.status(200).json({
+        message: "Lead updated successfully.",
+        lead: updatedLead,
+      });
     } else {
-      res
-        .status(404)
-        .json({ error: `Lead with ID ${req.params.leadId} not found.` });
+      return res.status(404).json({
+        error: `Lead with ID ${req.params.leadId} not found.`,
+      });
     }
   } catch (error) {
+    console.error("Error updating lead:", error);
     res.status(500).json({ error: "Failed to update lead" });
   }
 });
+
 
 //Delete Lead
 async function deleteLead(leadId) {
