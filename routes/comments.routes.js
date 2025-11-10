@@ -46,10 +46,10 @@ async function createNewComment(newComment) {
   }
 }
 
-router.post("/:id/comments", async (req, res) => {
+router.post("/:leadId/comments", async (req, res) => {
   try {
     const newComment = {
-      lead: req.params.id,
+      lead: req.params.leadId,
       author: req.body.author,
       commentText: req.body.commentText,
       createdAt: req.body.createdAt,
