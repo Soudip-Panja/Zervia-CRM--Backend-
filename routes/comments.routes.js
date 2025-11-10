@@ -106,14 +106,14 @@ router.get("/:leadId/comments", async (req, res) => {
   try {
     const { leadId } = req.params;
     const allComments = await getAllCommentsById(leadId);
-    if (allComments) {
-      res.status(200).json(allComments);
-    } else {
-      res.status(404).json({ error: "No comments found for this lead." });
+    if (allComments.error) {
+      return res.status(400).json({ error: allComments.error });
     }
+    res.status(200).json(allComments);
   } catch (error) {
-    res.status(500).json("Failed to fetch comments.");
+    res.status(500).json({ error: "Failed to fetch comments." });
   }
 });
+
 
 module.exports = { router };
