@@ -36,7 +36,6 @@ async function createNewComment(newComment) {
       lead,
       author,
       commentText,
-      createdAt: createdAt || Date.now(),
     });
 
     const savedComment = await comment.save();
@@ -52,7 +51,6 @@ router.post("/:leadId/comments", async (req, res) => {
       lead: req.params.leadId,
       author: req.body.author,
       commentText: req.body.commentText,
-      createdAt: req.body.createdAt,
     };
 
     const result = await createNewComment(newComment);
