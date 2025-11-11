@@ -25,7 +25,7 @@ const { router: reportRouter } = require("./routes/reports.routes");
 
 app.use("/leads", leadsRouter);
 app.use("/sales-agents", salesAgentRouter);
-app.use("/leads", commentsRouter);
+app.use("/comments", commentsRouter);
 app.use("/report", reportRouter);
 
 app.get("/", (req, res) => {
