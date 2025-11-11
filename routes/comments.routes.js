@@ -6,7 +6,7 @@ const Lead = require("../models/lead.model");
 const SalesAgent = require("../models/salesAgent.model");
 const Comments = require("../models/comment.model");
 
-// ✅ Create New Comment
+// ✅ Create New Lead Comment
 async function createNewComment(newComment) {
   try {
     const { lead, author, commentText, createdAt } = newComment;
